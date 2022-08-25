@@ -2,3 +2,4 @@
 archivos/
 venv/
 EDA.ipynb
+conexion_postgres.py
