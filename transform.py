@@ -113,9 +113,10 @@ def transform():
     venta= pd.merge(venta, localidad, left_on='Localidad', right_on='Localidad')
     venta = pd.merge(venta, sede, left_on='Area', right_on='Area')
     venta.drop(columns=['NombreCliente','Descripcion','Tipoprodcuto','Localidad','Sede_x','Area','Sede_y'], inplace=True)
-    venta = venta[['Id_venta','Fecha','Id_Cliente','Id_Empleado','Id_Tipoproducto','Id_Descripcion','Id_Localidad','Id_Sede','Cantidad','Ventas','Total_ventas']]
+    venta = venta[['Id_venta','Fecha','Id_Cliente','Id_Empleado','Id_Tipoproducto','Id_Descripcion','Id_Localidad','Id_Sede','Cantidad','Ventas','Total_ventas_usd']]
 
     lista_tablas = [venta, cliente, descripcion, tipo_producto, localidad, sede, empleados]
 
     return lista_tablas
+
 

@@ -12,30 +12,35 @@ CREATE TABLE PUBLIC.venta (
     'ventas' FLOAT,
     'total_ventas' FLOAT
 );
+COPY PUBLIC.transaction FROM './out/venta.csv' DELIMITER ',' CSV HEADER;
 
 
 CREATE TABLE PUBLIC.cliente (
     'id_cliente' INTEGER,
     'nombrecliente' VARCHAR
 );
+COPY PUBLIC.transaction FROM './out/cliente.csv' DELIMITER ',' CSV HEADER;
 
 
 CREATE TABLE PUBLIC.descripcion (
     'id_descripcion' INTEGER,
     'descripcion' VARCHAR
 );
+COPY PUBLIC.transaction FROM './out/descripcion.csv' DELIMITER ',' CSV HEADER;
 
 
 CREATE TABLE PUBLIC.tipo_producto (
     'id_tipoproducto' INTEGER,
     'tipoproducto' VARCHAR
 );
+COPY PUBLIC.transaction FROM './out/tipo_producto.csv' DELIMITER ',' CSV HEADER;
 
 
 CREATE TABLE PUBLIC.localidad (
     'id_localidad' INTEGER,
     'localidad' VARCHAR
 );
+COPY PUBLIC.transaction FROM './out/localidad.csv' DELIMITER ',' CSV HEADER;
 
 
 CREATE TABLE PUBLIC.sede (
@@ -43,11 +48,16 @@ CREATE TABLE PUBLIC.sede (
     'sede' VARCHAR,
     'area' INTEGER
 );
+COPY PUBLIC.transaction FROM './out/sede.csv' DELIMITER ',' CSV HEADER;
+
 
 CREATE TABLE PUBLIC.empleados (
     'id_empleado' INTEGER,
     'Nombre_apellido' VARCHAR
 );
+COPY PUBLIC.transaction FROM './out/empleados.csv' DELIMITER ',' CSV HEADER;
+
+
 
 -- CREACION DE LAS RELACIONES
 
