@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS venta;
 CREATE TABLE PUBLIC.venta (
     'id_venta' INTEGER,
     'fecha' DATE,
@@ -9,53 +9,59 @@ CREATE TABLE PUBLIC.venta (
     'id_localidad' INTEGER,
     'id_sede' INTEGER,
     'cantidad' INTEGER,
-    'ventas' FLOAT,
-    'total_ventas' FLOAT
+    'ventas' REAL,
+    'total_ventas_usd' REAL
 );
-COPY PUBLIC.transaction FROM './out/venta.csv' DELIMITER ',' CSV HEADER;
+COPY PUBLIC.transaction FROM 'C:/Users/Public/data/auto_motors/venta.csv' DELIMITER ',' CSV HEADER;
 
 
+DROP TABLE IF EXISTS cliente;
 CREATE TABLE PUBLIC.cliente (
     'id_cliente' INTEGER,
-    'nombrecliente' VARCHAR
+    'nombrecliente' TEXT
 );
-COPY PUBLIC.transaction FROM './out/cliente.csv' DELIMITER ',' CSV HEADER;
+COPY PUBLIC.transaction FROM 'C:/Users/Public/data/auto_motors/cliente.csv' DELIMITER ',' CSV HEADER;
 
 
+DROP TABLE IF EXISTS descripcion;
 CREATE TABLE PUBLIC.descripcion (
     'id_descripcion' INTEGER,
-    'descripcion' VARCHAR
+    'descripcion' TEXT
 );
-COPY PUBLIC.transaction FROM './out/descripcion.csv' DELIMITER ',' CSV HEADER;
+COPY PUBLIC.transaction FROM 'C:/Users/Public/data/auto_motors/descripcion.csv' DELIMITER ',' CSV HEADER;
 
 
+DROP TABLE IF EXISTS tipo_producto;
 CREATE TABLE PUBLIC.tipo_producto (
     'id_tipoproducto' INTEGER,
-    'tipoproducto' VARCHAR
+    'tipoproducto' TEXT
 );
-COPY PUBLIC.transaction FROM './out/tipo_producto.csv' DELIMITER ',' CSV HEADER;
+COPY PUBLIC.transaction FROM 'C:/Users/Public/data/auto_motors/tipo_producto.csv' DELIMITER ',' CSV HEADER;
 
 
+DROP TABLE IF EXISTS localidad;
 CREATE TABLE PUBLIC.localidad (
     'id_localidad' INTEGER,
-    'localidad' VARCHAR
+    'localidad' TEXT
 );
-COPY PUBLIC.transaction FROM './out/localidad.csv' DELIMITER ',' CSV HEADER;
+COPY PUBLIC.transaction FROM 'C:/Users/Public/data/auto_motors/localidad.csv' DELIMITER ',' CSV HEADER;
 
 
+DROP TABLE IF EXISTS sede;
 CREATE TABLE PUBLIC.sede (
     'id_sede' INTEGER,
-    'sede' VARCHAR,
+    'sede' TEXT,
     'area' INTEGER
 );
-COPY PUBLIC.transaction FROM './out/sede.csv' DELIMITER ',' CSV HEADER;
+COPY PUBLIC.transaction FROM 'C:/Users/Public/data/auto_motors/sede.csv' DELIMITER ',' CSV HEADER;
 
 
+DROP TABLE IF EXISTS empleados;
 CREATE TABLE PUBLIC.empleados (
     'id_empleado' INTEGER,
-    'Nombre_apellido' VARCHAR
+    'Nombre_apellido' TEXT
 );
-COPY PUBLIC.transaction FROM './out/empleados.csv' DELIMITER ',' CSV HEADER;
+COPY PUBLIC.transaction FROM 'C:/Users/Public/data/auto_motors/empleados.csv' DELIMITER ',' CSV HEADER;
 
 
 

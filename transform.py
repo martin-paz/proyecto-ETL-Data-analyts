@@ -1,4 +1,5 @@
 # %%
+from xml.etree.ElementInclude import include
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -61,14 +62,14 @@ def transform():
 
     venta = outliers_obt(venta,'Cantidad','0.25','0.8499999', valoriqr=1.75)
 
-    venta['Total_ventas_usd'] = venta.Ventas * venta.Cantidad * 0.00023
+    venta['Total_ventas_usd'] = round((venta.Ventas * venta.Cantidad * 0.00023), 3)
 
     venta.reset_index(inplace=True)
-    venta.rename(columns={'index':'Id_venta'}, inplace=True)
-    venta.drop(columns=['Id_venta'], inplace=True)
+    venta.drop(columns=['index'], inplace=True)
     venta.reset_index(inplace=True)
     venta.rename(columns={'index':'Id_venta'}, inplace=True)
     venta.Id_venta = venta.Id_venta.map(lambda x: x + 1)
+
     log('FIN - TRANSFORMACIONES')
 
     log('INICIO - CREACION TABLAS DE HECHOS')
@@ -107,6 +108,7 @@ def transform():
     log('FIN - Creacion Tablas Hechos')
 
     log('CREACION - TABLA HECHOS')
+
     log('VENTA')
     venta = pd.merge(venta,descripcion, left_on='Descripcion', right_on='Descripcion')
     venta.rename(columns={'CodigoFamilia':'Id_Tipoproducto', 'Familia':'Tipoprodcuto'}, inplace=True)
@@ -114,6 +116,26 @@ def transform():
     venta = pd.merge(venta, sede, left_on='Area', right_on='Area')
     venta.drop(columns=['NombreCliente','Descripcion','Tipoprodcuto','Localidad','Sede_x','Area','Sede_y'], inplace=True)
     venta = venta[['Id_venta','Fecha','Id_Cliente','Id_Empleado','Id_Tipoproducto','Id_Descripcion','Id_Localidad','Id_Sede','Cantidad','Ventas','Total_ventas_usd']]
+
+    log('RENAME COLUMNS ALL TABLES')
+    venta.rename(columns={  'Id_venta':'id_venta',
+                            'Fecha':'fecha',
+                            'Id_Cliente':'id_cliente',
+                            'Id_Empleado':'id_empleado',
+                            'Id_Tipoproducto':'id_tipoproducto',
+                            'Id_Descripcion':'id_descripcion',
+                            'Id_Localidad':'id_localidad',
+                            'Id_Sede':'id_sede',
+                            'Cantidad':'cantidad',
+                            'Ventas':'ventas',
+                            'Total_ventas_usd':'total_ventas_usd',
+                            }, inplace=True)
+    cliente.rename(columns={'Id_Cliente':'id_cliente','NombreCliente':'nombrecliente'}, inplace=True)
+    descripcion.rename(columns={'Id_Descripcion':'id_descripcion','Descripcion':'descripcion'}, inplace=True)
+    tipo_producto.rename(columns={'Id_Tipoproducto':'id_tipoproducto','Tipoprodcuto':'tipoproducto'}, inplace=True)
+    localidad.rename(columns={'Id_Localidad':'id_localidad','Localidad':'localidad'}, inplace=True)
+    sede.rename(columns={'Id_Sede':'id_sede','Sede':'sede','Area':'area'}, inplace=True)
+    empleados.rename(columns={'Id_Empleado':'id_empleado','Nombre y Apellido':'nombre_apellido'}, inplace=True)
 
     lista_tablas = [venta, cliente, descripcion, tipo_producto, localidad, sede, empleados]
 
